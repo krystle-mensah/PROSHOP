@@ -25,8 +25,6 @@ app.get('/api/products/:id', (req,res) => {
   res.json(product)
 })
 
-
-
 const PORT = process.env.PORT || 5000 
 
 //then we take app and listen on port 5000 
