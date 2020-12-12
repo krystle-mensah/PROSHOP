@@ -1,12 +1,12 @@
 // bring in express with require function in express. this common js synex
-
 import express from 'express'
-
 import dotenv  from 'dotenv'
-
+import connectDB from './config/db.js'
 import products from './data/products.js'
 
 dotenv.config()
+
+connectDB()
 
 // here we inlise express in app
 const app =  express();
