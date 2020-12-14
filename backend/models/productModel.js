@@ -1,5 +1,6 @@
 import monogoose from 'mongoose'
 
+// Individual Review
 const reviewsSchema = monogoose.Schema ({
   name: { type: String, required: true },
   rating: { type: Number, required: true },
@@ -8,10 +9,14 @@ const reviewsSchema = monogoose.Schema ({
   timestamps: true 
 })
 
-const productSchema = monogoose.Schema({
+const productSchema = monogoose.Schema(
+  // this is the product schema object
+  {
+  // we create a user here because 
   user: {
     type: monogoose.Schema.Types.ObjectId,
     required: true,
+    // this adds a relationship between products and users.
     ref: 'User'
   
   },
@@ -21,19 +26,19 @@ const productSchema = monogoose.Schema({
   },
   image: {
     type: String, 
-    required: true
+    required: true,
   },
   brand: {
     type: String, 
-    required: true 
+    required: true, 
   },
   category: {
     type: String, 
-    required: true
+    required: true,
   },
   description: {
     type: String, 
-    required: true
+    required: true,
   },
   reviews: [reviewsSchema], 
   rating: {
