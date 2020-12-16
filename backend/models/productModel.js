@@ -48,7 +48,7 @@ const productSchema = monogoose.Schema(
   },
   numReviews: {
     type: Number, 
-    required: number,
+    required: true,
     default: 0
   },
   price: {
