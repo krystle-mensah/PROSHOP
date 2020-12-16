@@ -1,5 +1,8 @@
+// I needed my monogoose models
 import mongoose from 'mongoose'
+// the mongo uri is in this file (.env)
 import dotenv from 'dotenv'
+// for terminal colours
 import colors from 'colors'
 import users from './data/users.js'
 import products from './data/products.js'
@@ -14,15 +17,21 @@ connectDB()
 
 const importData = async () => {
   try {
+    // first Delete table/collections content
     await Order.deleteMany()
     await Product.deleteMany()
     await User.deleteMany()
-
+    // then we pass in the user data with our user model
     const createdUsers = await User.insertMany(users)
 
+    // this is how you get the first user in the array of users and we can get the id by adding (.id)
     const adminUser = createdUsers[0]._id
 
+    // GET PRODUCT DATA
+
     const sampleProducts = products.map((product) => {
+      //Then we assign each product to the user admin
+      // all the data from that 1 product and add to the user field
       return { ...product, user: adminUser }
     })
 
