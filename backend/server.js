@@ -3,7 +3,7 @@ import express from 'express'
 import dotenv  from 'dotenv'
 import colors from 'colors'
 import connectDB from './config/db.js'
-import products from './data/products.js'
+import productRoutes from './routes/productRoutes.js'
 
 dotenv.config()
 
@@ -12,19 +12,12 @@ connectDB()
 // here we inlise express in app
 const app =  express();
 
-
 app.get('/', (req,res) => {
   res.send('API is running...')
 })
 
-app.get('/api/products', (req,res) => {
-  res.json(products)
-})
-
-app.get('/api/products/:id', (req,res) => {
-  const product = products.find((p) => p._id === req.params.id)
-  res.json(product)
-})
+//This App should use this file for routing products
+app.use('/api/products', productRoutes)
 
 const PORT = process.env.PORT || 5000 
 
